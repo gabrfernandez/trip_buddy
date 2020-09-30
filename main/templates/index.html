@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register or Login</title>
+</head>
+<body>
+    {%extends "base.html"%}
+    {%block content%}
+    <h1>Welcome! Let's travel!</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}    
+            <li style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div>
+        <h2>Register</h2>
+        <form action="/users" method="POST">
+            {%csrf_token%}
+            <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control form-control-sm" type="text" name="first_name">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control form-control-sm" type="text" name="last_name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control form-control-sm" type="text" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control form-control-sm" type="password" name="password">
+            </div>
+            <div class="form-group">
+                <label>Password Confirmation</label>
+                <input class="form-control form-control-sm" type="password" name="pw_confirm">
+            </div>
+            <button class="btn btn-info">Register</button>
+        </form>
+    </div>
+
+    <div class="login">
+        <h2>Login</h2>
+        <form action="/login" method="POST" class="login">
+            {%csrf_token%}
+            
+            <div>
+                <label>Email</label>
+                <input class="form-control form-control-sm" type="text" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control form-control-sm" type="password" name="password">
+            </div>
+            <button class="btn btn-info">Login</button>
+        </form>
+    </div>
+    {%endblock%}
+</body>
+</html>

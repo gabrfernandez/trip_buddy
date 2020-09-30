@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    {%extends "base.html"%}
+    {%block content%}
+    <h1>Hello {{user.first_name}}!</h1>
+    <button class="btn btn-light"><a href="/createtrip">Create a new trip</a></button>
+    <button class="btn btn-light"><a href="/logout">Log Out</a></button>
+    <h2>Your Trips</h2>
+    <table class="table table-striped">
+        <thead>
+            <th>Destination</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Plan</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {%for trip in user.trips.all%}
+            <tr>
+                <td><a href="/trips/{{trip.id}}">{{trip.destination}}</a></td>
+                <td>{{trip.start_date}}</td>
+                <td>{{trip.end_date}}</td>
+                <td>{{trip.plan}}</td>
+                <td>
+                    {% if user.id == trip.user.id %}
+                        <a href="/trips/edit/{{trip.id}}">Edit</a> |
+                        <a href="/trips/{{trip.id}}/delete">Remove</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    {%endblock%}
+</body>
+</html>

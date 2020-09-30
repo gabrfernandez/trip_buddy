@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Profile</title>
+</head>
+<body>
+    {%extends "base.html"%}
+    {%block content%}
+    <h1>Hello {{user.first_name}}. Read about this trip!</h1>
+    <button class="btn btn-light"><a href="/dashboard">Dashboard</a></button>
+    <button class="btn btn-light"><a href="/logout">Log Out</a></button>
+
+    <h2>{{trip.destination}}</h2>
+
+    <P><b>Destination: </b>{{trip.destination}}</P>
+    <P><b>Start Date: </b>{{trip.start_date}}</P>
+    <P><b>End Date: </b>{{trip.end_date}}</p>
+    <P><b>Created On: </b>{{trip.created_at}}</P>
+    <P><b>Last Updated: </b>{{trip.updated_at}}</P>
+    <p><b>Plan: </b>{{trip.plan}}</p>
+    <p><b>Created by: </b>{{trip.user.first_name}}</p>
+
+    {%endblock%}
+</body>
+</html>

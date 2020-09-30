@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    {%extends "base.html"%}
+    {%block content%}
+    <h1>Hello {{user.first_name}}! Let's Edit your Trip!</h1>
+    <form action="/trips/edit/{{trip.id}}/update" method="POST">
+        {% csrf_token %}
+        <div>
+            <label>Destination: </label>
+            <input type="text" name="destination" value="{{trip.destination}}">
+        </div>
+        <div>
+            <label>Start Date:</label>
+            <input type="date" name="start_date" value="{{trip.start_date}}">
+        </div>
+        <div>
+            <label>End Date:</label>
+            <input type="date" name="end_date" value="{{trip.end_date}}">
+        </div>
+        <div>
+            <label>Plan:</label>
+            <input type="text" name="plan" value="{{trip.plan}}">
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    <button class="btn btn-danger"><a href="/dashboard">Cancel</a></button>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}    
+            <li style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {%endblock%}
+</body>
+</html>
